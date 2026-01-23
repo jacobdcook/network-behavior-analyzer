@@ -12,7 +12,7 @@ class Visualizer:
             return
 
         # Resample data to see spikes
-        df_resampled = self.df.set_index('timestamp').resample('1S').size().reset_index(name='packet_count')
+        df_resampled = self.df.set_index('timestamp').resample('1s').size().reset_index(name='packet_count')
         
         fig = px.line(df_resampled, x='timestamp', y='packet_count', title='Network Traffic Volume (Packets per Second)')
         fig.write_html(output_path)

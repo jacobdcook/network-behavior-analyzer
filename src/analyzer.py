@@ -18,10 +18,16 @@ class NetworkAnalyzer:
         packets = scapy.rdpcap(file_path)
         return self._extract_features(packets)
 
-    def live_capture(self, interface, count=100):
+    def live_capture(self, interface, count=100, save_pcap=None):
         """Capture live traffic."""
         print(f"Starting live capture on {interface} for {count} packets...")
         packets = scapy.sniff(iface=interface, count=count)
+        
+        # Save to PCAP file if requested
+        if save_pcap:
+            scapy.wrpcap(save_pcap, packets)
+            print(f"[+] Saved {len(packets)} packets to {save_pcap}")
+        
         return self._extract_features(packets)
 
     def _extract_features(self, packets):

@@ -10,6 +10,7 @@ def main():
     parser.add_argument("--pcap", type=str, help="Path to PCAP file for analysis")
     parser.add_argument("--interface", type=str, help="Interface for live capture (e.g., eth0, wlan0)")
     parser.add_argument("--count", type=int, default=100, help="Number of packets to capture in live mode")
+    parser.add_argument("--save-pcap", type=str, help="Save captured packets to PCAP file for Wireshark analysis")
     
     args = parser.parse_args()
 
@@ -19,7 +20,7 @@ def main():
     if args.pcap:
         df = analyzer.process_pcap(args.pcap)
     elif args.interface:
-        df = analyzer.live_capture(args.interface, args.count)
+        df = analyzer.live_capture(args.interface, args.count, save_pcap=args.save_pcap)
     else:
         print("Please provide either --pcap or --interface. Use --help for usage.")
         return

@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+
+# Project Specific
+LAB_GUIDE.md
+*.pcap
+outputs/
+screenshots/
+label.png
+
+# IDEs
+.vscode/
+.idea/
+.cursor/

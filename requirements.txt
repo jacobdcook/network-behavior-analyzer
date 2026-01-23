@@ -4,5 +4,6 @@ plotly
 pyshark
 python-dotenv
 openai
+groq
 flask
 flask-cors

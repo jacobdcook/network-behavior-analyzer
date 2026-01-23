@@ -1,26 +1,26 @@
 import os
-from openai import OpenAI
+from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class AISummarizer:
     def __init__(self):
-        self.api_key = os.getenv("OPENAI_API_KEY")
+        self.api_key = os.getenv("GROQ_API_KEY")
         if self.api_key:
-            self.client = OpenAI(api_key=self.api_key)
+            self.client = Groq(api_key=self.api_key)
         else:
             self.client = None
 
     def summarize_anomalies(self, anomalies):
         """
-        Summarize suspicious traffic flows for a human analyst.
+        Summarize suspicious traffic flows for a human analyst using Groq.
         """
         if not anomalies:
             return "No suspicious activities detected."
 
         if not self.client:
-            return "AI Summarization unavailable: Missing OpenAI API Key. Please check your .env file."
+            return "AI Summarization unavailable: Missing GROQ_API_KEY. Please check your .env file."
 
         prompt = f"""
         You are a SOC Analyst. Summarize the following network anomalies detected by a behavioral analysis tool.
@@ -33,13 +33,20 @@ class AISummarizer:
         """
 
         try:
-            response = self.client.chat.completions.create(
-                model="gpt-4",
-                messages=[{"role": "system", "content": "You are a cybersecurity expert."},
-                          {"role": "user", "content": prompt}],
-                max_tokens=200
+            chat_completion = self.client.chat.completions.create(
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "you are a helpful cybersecurity assistant."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt,
+                    }
+                ],
+                model="llama-3.3-70b-versatile",
             )
-            return response.choices[0].message.content.strip()
+            return chat_completion.choices[0].message.content.strip()
         except Exception as e:
             return f"Error during AI summarization: {str(e)}"
 

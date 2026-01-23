@@ -1,5 +1,7 @@
 # Network Traffic Behavioral Analyzer
 
+![Project Header](screenshots/label.png)
+
 ## Project Overview
 The Network Traffic Behavioral Analyzer is a cybersecurity tool designed to identify network anomalies through behavioral analysis rather than simple signatures. By analyzing traffic flows, it detects potential Command & Control (C2) beaconing and data exfiltration attempts.
 

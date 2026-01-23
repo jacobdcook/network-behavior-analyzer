@@ -11,8 +11,6 @@ env/
 LAB_GUIDE.md
 *.pcap
 outputs/
-screenshots/
-label.png
 
 # IDEs
 .vscode/

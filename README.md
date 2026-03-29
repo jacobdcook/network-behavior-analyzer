@@ -34,7 +34,7 @@ The detection engine identifies potential C2 beaconing patterns based on traffic
 *Detection results flagging multiple instances of potential C2 beaconing.*
 
 ### 4. AI-Powered Threat Summarization
-Integrating Groq (Llama 3) to provide a natural language summary of the detected anomalies for a SOC analyst.
+Integrating Groq (Llama 3) to provide a natural language summary of the detected anomalies for detection and security operations review.
 
 ![AI Summary](screenshots/ai_summary.png)
 *AI-generated summary explaining the risks and recommended next steps.*
